@@ -18,6 +18,23 @@ class NewImage extends ImagerFormat
 	}
 
 	/**
+	 * Инициализация настроек
+	 *
+	 * @param array $config
+	 *
+	 * @return self
+	 */
+	public function init($config = []): self
+	{
+		foreach ($config as $key => $value) {
+			if (property_exists($this, $key)) {
+				$this->$key = $value;
+			}
+		}
+		return $this;
+	}
+
+	/**
 	 * Клонируем, чтобы не вносить изменения в общий экземпляр
 	 *
 	 * @return NewImage

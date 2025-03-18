@@ -11,18 +11,12 @@ namespace pkgRu\imagerPhp;
  */
 class Imager extends ImagerEncode
 {
-	use ImagerDataTrait;
-
 	private NewImage $instance;
 
 	public function __construct(array $config = [])
 	{
-		$this->instance = new NewImage();
-		foreach ($config as $key => $value) {
-			if (property_exists($this, $key)) {
-				$this->instance->$key = $value;
-			}
-		}
+		$this->instance = new NewImage;
+		$this->instance->init($config);
 	}
 
 
