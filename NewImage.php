@@ -10,7 +10,7 @@ namespace pkgRu\imagerPhp;
  * 
  * @see https://github.com/pkg-ru/imager
  */
-class NewImage extends ImagerFormat
+class NewImage extends ImagerEncode
 {
 	public function __construct(string|null $thumb = null)
 	{
