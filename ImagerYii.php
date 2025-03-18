@@ -2,6 +2,8 @@
 
 namespace pkgRu\imagerPhp;
 
+use yii\base\Component;
+
 /**
  * Imager
  * 
@@ -9,16 +11,18 @@ namespace pkgRu\imagerPhp;
  * 
  * @see https://github.com/pkg-ru/imager
  */
-class Imager extends NewImage
+class ImagerYii extends Component
 {
 	private NewImage $instance;
 
 	public $config = [];
 
-	public function __construct(array $config = [])
+	public function init()
 	{
+		parent::init();
 		$this->instance = new NewImage;
-		$this->instance->init($config ?: $this->config);
+		$this->instance->init($this->config);
+		$this->config = null;
 	}
 
 

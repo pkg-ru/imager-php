@@ -2,7 +2,7 @@
 
 namespace pkgRu\imagerPhp;
 
-class ImagerEncode
+abstract class ImagerEncode extends ImagerFormat
 {
 	use ImagerDataTrait;
 

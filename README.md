@@ -35,22 +35,23 @@ echo $imager->getConvert("my_path_image3.png", "gif"), "\n"; // return uri image
 return [
 	'components' => [
 		'imager' => [
-			'class' => \pkgRu\imagerPhp\NewImage::class,
+			'class' => \pkgRu\imagerPhp\ImagerYii::class,
 			// можно передать настройки компанента по умолчанию
 			// !!!ВНИМАНИЕ: нужно и можно передавать только те параметры,
 			// которые разрешены в настройках thumb сервиса Imager
 			// по умолчанию thumb = default
-			'thumb'      => 'default',
-			'color'      => [255, 255, 255],
-			'width'      => 150,
-			'height'     => 150,
-			'quality'    => 85,
-			'crop'       => true,
-			'loop'       => true,
-			'trimActive' => true,
-			'trimRate'   => 10,
-			'trimColor'  => [[255, 255, 255], [0, 0, 0]],
-
+			'config' => [
+				'thumb'      => 'default',
+				'color'      => [255, 255, 255],
+				'width'      => 150,
+				'height'     => 150,
+				'quality'    => 85,
+				'crop'       => true,
+				'loop'       => true,
+				'trimActive' => true,
+				'trimRate'   => 10,
+				'trimColor'  => [[255, 255, 255], [0, 0, 0]],
+			],
 		],
 	],
 ];

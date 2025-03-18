@@ -2,7 +2,7 @@
 
 namespace pkgRu\imagerPhp;
 
-class ImagerFormat extends Imager
+abstract class ImagerFormat
 {
 	protected const FORMAT_JPG   = 1;
 	protected const FORMAT_JPEG  = 2;
