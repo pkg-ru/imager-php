@@ -1,5 +1,6 @@
 {
 	"name": "ru-pkg/imager-php",
+	"version": "0.0.1",
 	"description": "Imager - Горячее создание миниатюр для картинок",
 	"type": "library",
 	"license": "GPL-3.0 license",
