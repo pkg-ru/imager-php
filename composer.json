@@ -1,5 +1,5 @@
 {
-	"name": "ru-pkg/imager-php",
+	"name": "pkg-ru/imager-php",
 	"version": "0.0.1",
 	"minimum-stability": "dev",
 	"description": "Imager - Горячее создание миниатюр для картинок",
@@ -27,7 +27,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"ruPkg\\imagerPhp\\": ""
+			"pkgRu\\imagerPhp\\": ""
 		}
 	}
 }

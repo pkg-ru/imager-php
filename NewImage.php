@@ -1,6 +1,6 @@
 <?php
 
-namespace ruPkg\imagerPhp;
+namespace pkgRu\imagerPhp;
 
 
 /**

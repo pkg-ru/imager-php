@@ -4,7 +4,7 @@
 > Для работы нужно настроить и запустить [микро-сервис Imager](https://github.com/pkg-ru/imager)
 
 ```bash
-php composer.phar require ru-pkg/imager-php:*
+php composer.phar require pkg-ru/imager-php:*
 ```
 
 > **ВНИМАНИЕ**
@@ -15,7 +15,7 @@ php composer.phar require ru-pkg/imager-php:*
 ```php
 <?php
 
-use ruPkg\imagerPhp\NewImage;
+use pkgRu\imagerPhp\NewImage;
 
 $imager = new NewImage;
 $imager->quality(75)->size(150, 150)->trim(true, 10);
@@ -35,7 +35,7 @@ echo $imager->getConvert("my_path_image3.png", "gif"), "\n"; // return uri image
 return [
 	'components' => [
 		'imager' => [
-			'class' => \ruPkg\imagerPhp\NewImage::class,
+			'class' => \pkgRu\imagerPhp\NewImage::class,
 			// можно передать настройки компанента по умолчанию
 			// !!!ВНИМАНИЕ: нужно и можно передавать только те параметры,
 			// которые разрешены в настройках thumb сервиса Imager
