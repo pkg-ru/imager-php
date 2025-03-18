@@ -1,0 +1,31 @@
+{
+	"name": "ru-pkg/imager-php",
+	"description": "Imager - Горячее создание миниатюр для картинок",
+	"type": "library",
+	"license": "GPL-3.0 license",
+	"keywords": [
+		"assets",
+		"imager",
+		"image",
+		"webp",
+		"avif",
+		"heif",
+		"heic",
+		"jpg",
+		"png",
+		"gif"
+	],
+	"authors": [
+		{
+			"name": "Altuhov Vladislav"
+		}
+	],
+	"require": {
+		"php": "^7.1.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"ruPkg\\imagerPhp\\": ""
+		}
+	}
+}
