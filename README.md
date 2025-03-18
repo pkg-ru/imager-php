@@ -4,7 +4,7 @@
 > Для работы нужно настроить и запустить [микро-сервис Imager](https://github.com/pkg-ru/imager)
 
 ```bash
-php composer.phar require --prefer-dist ru-pkg/imager-php "*"
+php composer.phar require ru-pkg/imager-php:*
 ```
 
 > **ВНИМАНИЕ**
