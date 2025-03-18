@@ -11,6 +11,8 @@ namespace pkgRu\imagerPhp;
  */
 class Imager extends ImagerEncode
 {
+	use ImagerDataTrait;
+
 	private NewImage $instance;
 
 	public function __construct(array $config = [])
