@@ -9,35 +9,15 @@ namespace pkgRu\imagerPhp;
  * 
  * @see https://github.com/pkg-ru/imager
  */
-class Imager extends NewImage
+class Imager
 {
-	private NewImage $instance;
+	use base\ImagerActionTrait;
 
 	public $config = [];
 
 	public function __construct(array $config = [])
 	{
-		$this->instance = new NewImage;
-		$this->instance->init($config ?: $this->config);
-	}
-
-
-	/**
-	 * Новый экземпляр для формирования ассетов миниатюр картинок
-	 *
-	 * @param string|null $thumb
-	 *
-	 * @return NewImage
-	 */
-	public function newImage(string|null $thumb = null): NewImage
-	{
-		if ($this->instance) {
-			$instance = $this->instance->clone();
-			if ($thumb) {
-				$instance->thumb($thumb);
-			}
-			return $instance;
-		}
-		return new NewImage($thumb);
+		$this->_init($config ?: $this->config);
+		$this->config = null;
 	}
 }

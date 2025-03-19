@@ -1,22 +1,22 @@
 <?php
 
-namespace pkgRu\imagerPhp;
+namespace pkgRu\imagerPhp\base;
 
 trait ImagerDataTrait
 {
-	protected $trimColor;
-	protected $format;
-	protected $thumb;
-	protected $color;
-	protected $width;
-	protected $height;
-	protected $formatTo;
-	protected $formatFrom;
-	protected $quality;
-	protected $trimRate;
-	protected $loop = true;
-	protected $trimActive;
-	protected $crop;
+	public $trimColor;
+	public $format;
+	public $thumb;
+	public $color;
+	public $width;
+	public $height;
+	public $formatTo;
+	public $formatFrom;
+	public $quality;
+	public $trimRate;
+	public $loop = true;
+	public $trimActive;
+	public $crop;
 
 	protected $Flags = [
 		"width"           => 1 << 0,

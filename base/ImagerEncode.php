@@ -1,12 +1,12 @@
 <?php
 
-namespace pkgRu\imagerPhp;
+namespace pkgRu\imagerPhp\base;
 
-abstract class ImagerEncode extends ImagerFormat
+class ImagerEncode extends ImagerFormatAbstract
 {
 	use ImagerDataTrait;
 
-	protected function encode(): string
+	public function encode(): string
 	{
 		$myFlag = 0;
 		if ($this->thumb == "default") {

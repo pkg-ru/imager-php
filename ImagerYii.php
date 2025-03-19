@@ -13,35 +13,14 @@ use yii\base\Component;
  */
 class ImagerYii extends Component
 {
-	private NewImage $instance;
+	use base\ImagerActionTrait;
 
 	public $config = [];
 
 	public function init()
 	{
 		parent::init();
-		$this->instance = new NewImage;
-		$this->instance->init($this->config);
+		$this->_init($this->config);
 		$this->config = null;
-	}
-
-
-	/**
-	 * Новый экземпляр для формирования ассетов миниатюр картинок
-	 *
-	 * @param string|null $thumb
-	 *
-	 * @return NewImage
-	 */
-	public function newImage(string|null $thumb = null): NewImage
-	{
-		if ($this->instance) {
-			$instance = $this->instance->clone();
-			if ($thumb) {
-				$instance->thumb($thumb);
-			}
-			return $instance;
-		}
-		return new NewImage($thumb);
 	}
 }

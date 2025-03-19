@@ -15,15 +15,15 @@ php composer.phar require pkg-ru/imager-php:*
 ```php
 <?php
 
-use pkgRu\imagerPhp\NewImage;
+use pkgRu\imagerPhp\Imager;
 
-$imager = new NewImage;
-$imager->quality(75)->size(150, 150)->trim(true, 10);
+$imager = new Imager;
+$group = $imager->clone()->quality(75)->size(150, 150)->trim(true, 10);
 
-echo $imager->getConvert("my_path_image.png", "webp"), "\n"; // return uri image to webp format
-echo $imager->getConvert("my_path_image2.jpg", "webp"), "\n"; // return uri image to webp format
-echo $imager->getConvert("my_path_image3.gif", "webp"), "\n"; // return uri image to webp format
-echo $imager->getConvert("my_path_image3.png", "gif"), "\n"; // return uri image to gif format
+echo $group->getConvert("my_path_image.png", "webp"), "\n";  // return: my_path_image/DqcECgCWSwoAlg.webp
+echo $group->getConvert("my_path_image2.jpg", "webp"), "\n"; // return: my_path_image2/DqcBCgCWSwoAlg.webp
+echo $group->getConvert("my_path_image3.gif", "webp"), "\n"; // return: my_path_image3/DqcDCgCWSwoAlg.webp
+echo $group->getConvert("my_path_image3.png", "gif"), "\n";  // return: my_path_image3/DqcEAwCWSwoAlg.gif
 
 ?>
 ```
@@ -55,5 +55,22 @@ return [
 		],
 	],
 ];
+?>
+```
+
+```php
+<?php
+
+echo Yii::$app->imager->size(50, 50)->getConvert("my_path_image.png", "webp"), "\n";
+// так-же применится установленный ранее размер
+echo Yii::$app->imager->quality(60)->getConvert("my_path_image2.jpg", "webp"), "\n";
+// так-же применится установленое ранее качество и размер
+echo Yii::$app->imager->getConvert("my_path_image3.gif", "webp"), "\n";
+
+// используйте clone() чтобы уникализировать настройки для группы ассетов или для индивидуального ассета
+$group = Yii::$app->imager->clone()->size(50, 50)->quality(50);
+echo $group->getConvert("my_path_image.png", "webp"), "\n";
+echo $group->getConvert("my_path_image2.jpg", "webp"), "\n";
+
 ?>
 ```

@@ -1,8 +1,8 @@
 <?php
 
-namespace pkgRu\imagerPhp;
+namespace pkgRu\imagerPhp\base;
 
-abstract class ImagerFormat
+abstract class ImagerFormatAbstract
 {
 	protected const FORMAT_JPG   = 1;
 	protected const FORMAT_JPEG  = 2;
@@ -18,7 +18,7 @@ abstract class ImagerFormat
 	protected const FORMAT_HEIF  = 12;
 	protected const FORMAT_HEIC  = 13;
 
-	protected const FormatList = [
+	public const FormatList = [
 		self::FORMAT_JPG   => "jpg",
 		self::FORMAT_JPEG  => "jpeg",
 		self::FORMAT_GIF   => "gif",
@@ -34,7 +34,7 @@ abstract class ImagerFormat
 		self::FORMAT_HEIC  => "heic",
 	];
 
-	protected function getFormat(string $format): int|bool
+	public function getFormat(string $format): int|bool
 	{
 		return array_search(strtolower($format), self::FormatList, true);
 	}

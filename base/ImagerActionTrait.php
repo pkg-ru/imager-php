@@ -1,7 +1,6 @@
 <?php
 
-namespace pkgRu\imagerPhp;
-
+namespace pkgRu\imagerPhp\base;
 
 /**
  * Imager
@@ -10,38 +9,36 @@ namespace pkgRu\imagerPhp;
  * 
  * @see https://github.com/pkg-ru/imager
  */
-class NewImage extends ImagerEncode
+trait ImagerActionTrait
 {
-	public function __construct(string|null $thumb = null)
-	{
-		$this->thumb = $thumb;
-	}
+	/** @var ImagerEncode */
+	private $instance;
 
 	/**
 	 * Инициализация настроек
 	 *
 	 * @param array $config
-	 *
-	 * @return self
 	 */
-	public function init($config = []): self
+	public function _init($config = [])
 	{
+		$this->instance = new ImagerEncode;
 		foreach ($config as $key => $value) {
-			if (property_exists($this, $key)) {
-				$this->$key = $value;
+			if (property_exists($this->instance, $key)) {
+				$this->instance->$key = $value;
 			}
 		}
-		return $this;
 	}
 
 	/**
 	 * Клонируем, чтобы не вносить изменения в общий экземпляр
 	 *
-	 * @return NewImage
+	 * @return self
 	 */
-	public function clone(): NewImage
+	public function clone(): self
 	{
-		return clone $this;
+		$self = new self;
+		$self->instance = clone $this->instance;
+		return $self;
 	}
 
 	/**
@@ -54,8 +51,8 @@ class NewImage extends ImagerEncode
 	 */
 	public function size(int $width = 0, int $height = 0): self
 	{
-		$this->width = $width;
-		$this->height = $height;
+		$this->instance->width = $width;
+		$this->instance->height = $height;
 		return $this;
 	}
 
@@ -68,7 +65,7 @@ class NewImage extends ImagerEncode
 	 */
 	public function quality(int $quality): self
 	{
-		$this->quality = $quality;
+		$this->instance->quality = $quality;
 		return $this;
 	}
 
@@ -81,7 +78,7 @@ class NewImage extends ImagerEncode
 	 */
 	public function crop(bool $crop): self
 	{
-		$this->crop = $crop;
+		$this->instance->crop = $crop;
 		return $this;
 	}
 
@@ -96,7 +93,7 @@ class NewImage extends ImagerEncode
 	 */
 	public function color(int $r, int $g, int $b): self
 	{
-		$this->color = [$r, $g, $b];
+		$this->instance->color = [$r, $g, $b];
 		return $this;
 	}
 
@@ -109,7 +106,7 @@ class NewImage extends ImagerEncode
 	 */
 	public function loop(bool $loop): self
 	{
-		$this->loop = $loop;
+		$this->instance->loop = $loop;
 		return $this;
 	}
 
@@ -122,7 +119,7 @@ class NewImage extends ImagerEncode
 	 */
 	public function thumb(string $thumb): self
 	{
-		$this->thumb = $thumb;
+		$this->instance->thumb = $thumb;
 		return $this;
 	}
 
@@ -140,8 +137,8 @@ class NewImage extends ImagerEncode
 	 */
 	public function trim(bool $active, int $rate = 0, array $color = []): self
 	{
-		$this->trimActive = $active;
-		$this->trimRate = $rate;
+		$this->instance->trimActive = $active;
+		$this->instance->trimRate = $rate;
 		if ($color) {
 			$newColors = [];
 			foreach ($color as $item) {
@@ -154,7 +151,7 @@ class NewImage extends ImagerEncode
 			if (!$newColors) {
 				$newColors[] = array_filter($color, 'is_numeric');
 			}
-			$this->color = $newColors;
+			$this->instance->color = $newColors;
 		}
 		return $this;
 	}
@@ -171,37 +168,37 @@ class NewImage extends ImagerEncode
 	{
 		$file_arr = explode('.', $file);
 		$lastIndex = count($file_arr) - 1;
-		$this->format = $file_arr[$lastIndex];
-		if (!in_array(strtolower($this->format), self::FormatList)) {
+		$this->instance->format = $file_arr[$lastIndex];
+		if (!in_array(strtolower($this->instance->format), ImagerEncode::FormatList)) {
 			return $file;
 		}
 
 
 		if ($format == "") {
-			$format = strtolower($this->format);
+			$format = strtolower($this->instance->format);
 		}
 
-		$nf = $this->getFormat($format);
+		$nf = $this->instance->getFormat($format);
 		if ($nf === false) {
 			return $file;
 		}
 
-		$this->formatTo = $nf;
-		if ($this->format == $format) {
+		$this->instance->formatTo = $nf;
+		if ($this->instance->format == $format) {
 			// если запрашиваемый формат совпадает с текущим то не пишем в данные
-			$this->format = "";
+			$this->instance->format = "";
 		}
 
-		if ($this->format != "" && $this->format == strtolower($this->format)) {
+		if ($this->instance->format != "" && $this->instance->format == strtolower($this->instance->format)) {
 			//если формат файла в нижнем регистре, пишем в данные только 1 байт
-			$nf = $this->getFormat($this->format);
+			$nf = $this->instance->getFormat($this->instance->format);
 			if ($nf !== false) {
-				$this->formatFrom = $nf;
-				$this->format = "";
+				$this->instance->formatFrom = $nf;
+				$this->instance->format = "";
 			}
 		}
 
-		$code = $this->encode();
+		$code = $this->instance->encode();
 		if (!$code) {
 			return $file;
 		}
