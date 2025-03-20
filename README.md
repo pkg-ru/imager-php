@@ -74,3 +74,4 @@ echo $group->getConvert("my_path_image2.jpg", "webp"), "\n";
 
 ?>
 ```
+[GIT](https://github.com/pkg-ru/imager-php) / [Packagist](https://packagist.org/packages/pkg-ru/imager-php)
