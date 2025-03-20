@@ -151,7 +151,7 @@ trait ImagerActionTrait
 			if (!$newColors) {
 				$newColors[] = array_filter($color, 'is_numeric');
 			}
-			$this->instance->color = $newColors;
+			$this->instance->trimColor = $newColors;
 		}
 		return $this;
 	}
